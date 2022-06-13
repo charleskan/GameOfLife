@@ -1,40 +1,177 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="index.css" />
+<head>
+  <title>Intro</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: "Raleway", sans-serif
+    }
+  </style>
+</head>
 
-    <title>Game of Life</title>
-  </head>
-  <body>
-    <div id="canvas"></div>
-    <input type="color" id="chosen-color">
-    <button type="button" class="btn btn-primary" id="reset-game">Reset Game</button>
-    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-      <button type="button" class="btn btn-danger" id="frameSlow">Slow</button>
-      <button type="button" class="btn btn-warning" id="frameMiddle">Middle</button>
-      <button type="button" class="btn btn-success" id="frameFast">Fast</button>
-    </div>
-    <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-primary" id="next">Next</button>
-      <button type="button" class="btn btn-primary" id="stop">Stop</button>
-    </div>
-    </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
-    <script src="index.js"></script>
-  </body>
+<body class="w3-light-grey">
+
+  <!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+  <div class="w3-content" style="max-width:1400px">
+
+    <!-- Header -->
+    <header class="w3-container w3-center w3-padding-32">
+      <h1><b>MY BLOG</b></h1>
+      <p>Welcome to the blog of <span class="w3-tag">Charles Kan</span></p>
+    </header>
+
+    <!-- Grid -->
+    <div class="w3-row">
+
+      <!-- Blog entries -->
+      <div class="w3-col l8 s12">
+        <!-- Blog entry -->
+        <div class="w3-card-4 w3-margin w3-white">
+          <img src="./亞運出戰.jpg" alt="PoFo01" style="width:100%">
+          <div class="w3-container">
+            <h3><b>ASIAN GAMES 2018 AOV HK TEAM</b></h3>
+            <h5>Creative Director, <span class="w3-opacity">August, 2018</span></h5>
+          </div>
+
+          <div class="w3-container">
+            <p>
+              ∙ Designed all materials in utilized across all social media, web and websites including posters, video shoots, web advertisements, model photography, and all creative requirements or opportunities.
+              ∙ Created public relations plans to increase brand recognition, contracts, sales and general exposure within the AOV(game) community.
+              ∙ Managed social media platforms to interact with followers and update the daily news, mainly in Facebook and Instagram.</p>
+            <div class="w3-row">
+              <div class="w3-col m8 s12">
+                <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+              </div>
+              <div class="w3-col m4 w3-hide-small">
+                <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-tag">0</span></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+
+        <!-- Blog entry -->
+        <div class="w3-card-4 w3-margin w3-white">
+          <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+          <div class="w3-container">
+            <h3><b>BLOG ENTRY</b></h3>
+            <h5>Title description, <span class="w3-opacity">April 2, 2014</span></h5>
+          </div>
+
+          <div class="w3-container">
+            <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod
+              placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non
+              congue ullam corper. Praesent tincidunt sed
+              tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non
+              fringilla.</p>
+            <div class="w3-row">
+              <div class="w3-col m8 s12">
+                <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+              </div>
+              <div class="w3-col m4 w3-hide-small">
+                <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END BLOG ENTRIES -->
+      </div>
+
+      <!-- Introduction menu -->
+      <div class="w3-col l4">
+        <!-- About Card -->
+        <div class="w3-card w3-margin w3-margin-top">
+          <img src="./icon3.png" style="width:100%">
+          <div class="w3-container w3-white">
+            <h4><b>CHARLES KAN</b></h4>
+            <p>I had 3-year graphic & web designer working experience. Now, I'm try to be a programer.</p>
+          </div>
+        </div>
+        <hr>
+
+        <!-- Posts -->
+        <div class="w3-card w3-margin">
+          <div class="w3-container w3-padding">
+            <h4>My JS projects</h4>
+          </div>
+          <ul class="w3-ul w3-hoverable w3-white">
+            <li class="w3-padding-16">
+              <a href="./gameOfLife.html">
+                <img src="gameOfLifeLogo.png" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+                <div class="w3-large">Game Of Life</div>
+              </a>
+                <span>First Project</span>
+            </li>
+           
+            <li class="w3-padding-16">
+              <img src="/w3images/gondol.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+              <span class="w3-large">Ipsum</span><br>
+              <span>Praes tinci sed</span>
+            </li>
+            <li class="w3-padding-16">
+              <img src="/w3images/skies.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+              <span class="w3-large">Dorum</span><br>
+              <span>Ultricies congue</span>
+            </li>
+            <li class="w3-padding-16 w3-hide-medium w3-hide-small">
+              <img src="/w3images/rock.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+              <span class="w3-large">Mingsum</span><br>
+              <span>Lorem ipsum dipsum</span>
+            </li>
+          </ul>
+        </div>
+        <hr>
+
+        <!-- Labels / tags -->
+        <div class="w3-card w3-margin">
+          <div class="w3-container w3-padding">
+            <h4>Tags</h4>
+          </div>
+          <div class="w3-container w3-white">
+            <p><span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span
+                class="w3-tag w3-light-grey w3-small w3-margin-bottom">New York</span> <span
+                class="w3-tag w3-light-grey w3-small w3-margin-bottom">London</span>
+              <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">IKEA</span> <span
+                class="w3-tag w3-light-grey w3-small w3-margin-bottom">NORWAY</span> <span
+                class="w3-tag w3-light-grey w3-small w3-margin-bottom">DIY</span>
+              <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span> <span
+                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Baby</span> <span
+                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Family</span>
+              <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span> <span
+                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Clothing</span> <span
+                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Shopping</span>
+              <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Sports</span> <span
+                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- END Introduction Menu -->
+      </div>
+
+      <!-- END GRID -->
+    </div><br>
+
+    <!-- END w3-content -->
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+    <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
+    <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button>
+  </footer>
+
+</body>
+
 </html>

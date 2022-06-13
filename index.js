@@ -1,21 +1,25 @@
-const unitLength = 20;
+let unitLength = document.getElementById("zoom");
 const strokeColor = 50;
 let columns; /* To be determined by window width */
 let rows;    /* To be determined by window height */
 let currentBoard;
 let nextBoard;
 let colorChange = document.querySelector(`#chosen-color`);
-let fr = 60
+let rulesText1 = document.getElementById("rules-text1");
+let rulesText2 = document.getElementById("rules-text2");
+let rulesText3 = document.getElementById("rules-text3");
+let fr = document.getElementById("frameRate");
+let randomButton = document.querySelector(`#random`);
 
 
 function setup() {
     /* Set the canvas to be under the element #canvas*/
-    const canvas = createCanvas(windowWidth, windowHeight - 100);
+    let canvas = createCanvas(windowWidth, windowHeight - 100);
     canvas.parent(document.querySelector('#canvas'));
 
     /*Calculate the number of columns and rows */
-    columns = floor(width / unitLength);
-    rows = floor(height / unitLength);
+    columns = floor(windowWidth);
+    rows = floor(windowHeight - 100);
 
     // set the frameRate
     // frameRate(fr.value); // Attempt to refresh at starting FPS
@@ -38,15 +42,17 @@ function setup() {
 function init() {
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
+            // if (rd == false) {
             currentBoard[i][j] = {
                 //Objects
                 alive: false,
                 color: colorChange.value,
+                //array save nextBoard color?
 
             };
             nextBoard[i][j] = {
                 alive: false,
-                color: colorChange.value,
+                color: boxColor(i, j),
 
             };
         }
@@ -55,9 +61,13 @@ function init() {
 
 
 function draw() {
-    frameRate(fr);
+    columns = floor(width / 10);
+    rows = floor(height / 10);
+
+    frameRate(frame());
     background(255);
     generate();
+
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
             if (currentBoard[i][j].alive) {
@@ -66,13 +76,41 @@ function draw() {
                 fill(255);
             }
             stroke(strokeColor);
-            rect(i * unitLength, j * unitLength, unitLength, unitLength);
+            rect(i * zoom(), j * zoom(), zoom(), zoom());
         }
     }
 }
 
+// function windowResized() {
+//     resizeCanvas(windowWidth, windowHeight - 100);
+// }
+
 function boxColor(x, y) {
     return currentBoard[x][y].color
+}
+
+function inputRules1() {
+    return rulesText1.value
+}
+
+function inputRules2() {
+    return rulesText2.value
+}
+
+function inputRules3() {
+    return rulesText3.value
+}
+
+function outputNextColor() {
+    return nextBoard[x][y].color
+}
+
+function frame() {
+    return parseInt(fr.value)
+}
+
+function zoom() {
+    return parseInt(unitLength.value)
 }
 
 function generate() {
@@ -97,18 +135,18 @@ function generate() {
             }
 
             // Rules of Life
-            if (currentBoard[x][y].alive == true && neighbors < 2) {
+            if (currentBoard[x][y].alive == true && neighbors < inputRules1()) {
                 // Die of Loneliness
                 nextBoard[x][y].alive = false;
                 // nextBoard[x][y].color = 255;
-            } else if (currentBoard[x][y].alive == true && neighbors > 3) {
+            } else if (currentBoard[x][y].alive == true && neighbors > inputRules2()) {
                 // Die of Overpopulation
                 nextBoard[x][y].alive = false;
                 // nextBoard[x][y].color = 255;
-            } else if (currentBoard[x][y].alive == false && neighbors == 3) {
+            } else if (currentBoard[x][y].alive == false && neighbors == inputRules3()) {
                 // New life due to Reproduction
                 nextBoard[x][y].alive = true;
-                // nextBoard[x][y].color = colorChange.value;
+                nextBoard[x][y].color = currentBoard[x][y].color;
             } else {
                 // Stasis
                 nextBoard[x][y].alive = currentBoard[x][y].alive;
@@ -134,9 +172,9 @@ function mousePressed() {
 /**
  * When mouse is released
  */
-function mouseReleased() {
-    loop();
-}
+// function mouseReleased() {
+//     loop();
+// }
 
 /**
  * When mouse is dragged
@@ -145,48 +183,62 @@ function mouseDragged() {
     /**
      * If the mouse coordinate is outside the board
      */
-    if (mouseX > unitLength * columns || mouseY > unitLength * rows) {
+    if (mouseX > zoom() * columns || mouseY > zoom() * rows) {
         return;
     }
-    const x = Math.floor(mouseX / unitLength);
-    const y = Math.floor(mouseY / unitLength);
+    const x = Math.floor(mouseX / zoom());
+    const y = Math.floor(mouseY / zoom());
     currentBoard[x][y].alive = true;
     currentBoard[x][y].color = colorChange.value;
     nextBoard[x][y].color = colorChange.value;
     fill(boxColor(x, y));
     stroke(strokeColor);
-    rect(x * unitLength, y * unitLength, unitLength, unitLength);
+    rect(x * zoom(), y * zoom(), zoom(), zoom());
 }
 
 //<-------------------Click Events-------------->
-{
-    document.querySelector('#reset-game')
-        .addEventListener('click', function () {
-            init();
-        });
 
-    document.querySelector('#frameSlow')
-        .addEventListener('click', function () {
-            fr = 10;
-        });
 
-    document.querySelector('#frameMiddle')
-        .addEventListener('click', function () {
-            fr = 30;
-        });
+// const clickEvents = document.querySelectorAll('.controlButton > button')
+// for (const clickEvent of clickEvents) {
+//     clickEvent.addEventListener('click', function() {
 
-    document.querySelector('#frameFast')
-        .addEventListener('click', function () {
-            fr = 60;
-        });
-    document.querySelector('#stop')
-        .addEventListener('click', function () {
-            noLoop();
-        });
-    document.querySelector('#next')
-        .addEventListener('click', function () {
-            noLoop();
-            loop();
-            noLoop();
-        });
-}
+document.querySelector('#reset-game')
+    .addEventListener('click', function () {
+        init();
+        loop();
+    });
+
+document.querySelector('#play')
+    .addEventListener('click', function () {
+        loop();
+    });
+document.querySelector('#stop')
+    .addEventListener('click', function () {
+        noLoop();
+    });
+document.querySelector('#next')
+    .addEventListener('click', function () {
+        loop();
+        noLoop();
+        loop();
+        noLoop();
+    });
+
+document.querySelector('#zoom')
+    .addEventListener('click', function () {
+        loop();
+    });
+
+document.querySelector("#random").addEventListener("click", function () {
+    loop();
+    for (let i = 0; i < columns; i++) {
+        for (let j = 0; j < rows; j++) {
+            currentBoard[i][j] = {
+                alive: Math.random() > 0.5 ? true : false,
+                color: colorChange.value,
+            }
+
+        }
+    }
+});
