@@ -14,7 +14,7 @@ let randomButton = document.querySelector(`#random`);
 
 function setup() {
     /* Set the canvas to be under the element #canvas*/
-    let canvas = createCanvas(windowWidth, windowHeight - 100);
+    let canvas = createCanvas(windowWidth - 200, windowHeight - 100);
     canvas.parent(document.querySelector('#canvas'));
 
     /*Calculate the number of columns and rows */
